@@ -10,15 +10,13 @@
  */
 class Solution {
     public ListNode middleNode(ListNode head) {
-        ListNode temp = head;
-        HashMap<Integer, ListNode> map = new HashMap<>();
-        int len = 0;
-         while (temp != null) {
-             map.put(len, temp);
-             temp = temp.next;
-             len++;
+        ListNode slow = head, fast = head;
+        
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        return map.get(len / 2);
+        return slow;
     }  
 }

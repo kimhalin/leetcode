@@ -1,32 +1,14 @@
 class MinStack {
-    Node head;
-    class Node {
-        int min;
-        int val;
-        Node next;
-
-        Node(int min, int val, Node next) {
-            this.min = min;
-            this.val = val;
-            this.next = next;
-        }
-    }
-    public MinStack() {
-        head = null;
-    }
-    
-    public void push(int val) {
-        int min = (head==null) ? val : head.min;
-        Node newNode = new Node(Math.min(min, val), val, head);
-        head = newNode;
+	private Node head;
+        
+    public void push(int x) {
+        if (head == null) 
+            head = new Node(x, x, null);
+        else 
+            head = new Node(x, Math.min(x, head.min), head);
     }
     
     public void pop() {
-        if (head.next == null || head == null) {
-            head = null;
-            return;
-        }
-
         head = head.next;
     }
     
@@ -37,15 +19,16 @@ class MinStack {
     public int getMin() {
         return head.min;
     }
-
-
+        
+    private class Node {
+        int val;
+        int min;
+        Node next;
+            
+        private Node(int val, int min, Node next) {
+            this.val = val;
+            this.min = min;
+            this.next = next;
+        }
+    }
 }
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack obj = new MinStack();
- * obj.push(val);
- * obj.pop();
- * int param_3 = obj.top();
- * int param_4 = obj.getMin();
- */

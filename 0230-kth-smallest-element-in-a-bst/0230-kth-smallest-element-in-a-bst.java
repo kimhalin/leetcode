@@ -21,7 +21,7 @@ class Solution {
             st.push(root);
             root = root.left;
         }
-            
+        
         while (k != 0) {
             TreeNode n = st.pop();
             k--;

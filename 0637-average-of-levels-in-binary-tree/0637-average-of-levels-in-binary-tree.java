@@ -15,31 +15,22 @@
  */
 class Solution {
     public List<Double> averageOfLevels(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList();
-        List<Integer> list = new ArrayList();
-        List<Double> res = new ArrayList();
-        queue.offer(root);
-
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-
-            while(size-- > 0) {
-                TreeNode cur = queue.poll();
-                list.add(cur.val);
-                if (size == 0) {
-                    Long sum = list.stream().mapToLong(Long::valueOf).sum();
-                    int divider = (list.size() != 0) ? list.size() : 1;     
-                    res.add(sum / (double) divider);
-                    list.clear();
-                }
-
-                if (cur.left != null)
-                    queue.offer(cur.left);
-                if (cur.right != null)
-                    queue.offer(cur.right);
+        List<Double> result = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        
+        if(root == null) return result;
+        q.add(root);
+        while(!q.isEmpty()) {
+            int n = q.size();
+            double sum = 0.0;
+            for(int i = 0; i < n; i++) {
+                TreeNode node = q.poll();
+                sum += node.val;
+                if(node.left != null) q.offer(node.left);
+                if(node.right != null) q.offer(node.right);
             }
+            result.add(sum / n);
         }
-        return res;
-
+        return result;
     }
 }

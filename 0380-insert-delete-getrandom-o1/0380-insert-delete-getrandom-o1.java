@@ -1,39 +1,41 @@
 class RandomizedSet {
 
     ArrayList<Integer> nums;
-    HashMap<Integer, Integer> locs;
+    HashMap<Integer, Integer> loc;
     java.util.Random rand = new java.util.Random();
 
     public RandomizedSet() {
-        nums = new ArrayList<Integer>();
-        locs = new HashMap<Integer, Integer>();
+        nums = new ArrayList<>();
+        loc = new HashMap<>();
     }
     
     public boolean insert(int val) {
-        boolean contain = locs.containsKey(val);
+        boolean contain = loc.containsKey(val);
         if (contain) return false;
-        locs.put(val, nums.size());
+
+        loc.put(val, nums.size());
         nums.add(val);
         return true;
     }
     
     public boolean remove(int val) {
-        boolean contain = locs.containsKey(val);
-        if(!contain) return false;
-
-        int loc = locs.get(val);
-        if (loc < nums.size() - 1) {
-            int lastone = nums.get(nums.size() - 1);
-            nums.set(loc, lastone);
-            locs.put(lastone, loc);
+        boolean contain = loc.containsKey(val);
+        if (!contain) return false;
+        
+        int idx = loc.get(val);
+        if (idx < nums.size()) {
+            int lastOne = nums.get(nums.size() - 1);
+            nums.set(idx, lastOne);
+            loc.put(lastOne, idx);
         }
-        locs.remove(val);
         nums.remove(nums.size() - 1);
+        loc.remove(val);
+
         return true;
     }
     
     public int getRandom() {
-        return nums.get( rand.nextInt(nums.size()) );
+        return nums.get( rand.nextInt(nums.size()));
     }
 }
 

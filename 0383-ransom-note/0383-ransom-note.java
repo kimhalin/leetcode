@@ -1,20 +1,20 @@
 class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
-        HashMap<Character, Integer> map = new HashMap<>();
-
+        // magazine 다 돌기
+        // 배열에 개수 저장
+        // ransomNote 돌면서 -1 하기
+        // 0이면 false 반환
+        int[] num = new int[26];
+        for (int i =0; i < magazine.length(); i++) {
+            num[magazine.charAt(i) - 97]++;
+        }
         for (int i = 0; i < ransomNote.length(); i++) {
-            Character c = ransomNote.charAt(i);
-            map.put(c, map.containsKey(c) ? map.get(c) + 1 : 1);
+            int n = ransomNote.charAt(i) - 97;
+            if (num[n] == 0)
+                return false;
+            num[n]--;
         }
 
-        for (int i = 0; i < magazine.length(); i++) {
-            Character c = magazine.charAt(i);
-            if (map.containsKey(c))
-                map.put(c, map.get(c) - 1);
-            if (map.get(c) != null && map.get(c).equals(0))
-                map.remove(c);
-        }
-
-        return map.isEmpty();
+        return true;
     }
 }

@@ -29,6 +29,6 @@ class Solution {
         }
 
         if (index == numCourses) return answer;
-        return null;
+        return new int[0];
     }
 }

@@ -8,11 +8,11 @@ class Solution {
             int left = i;
             int right = i;
 
-            if (left >= 0) {
+            while (left >= 0 && s.charAt(left) == c) {
                 left--;
             }
 
-            if (right < s.length()) {
+            while (right < s.length() && s.charAt(right) == c) {
                 right++;
             }
 

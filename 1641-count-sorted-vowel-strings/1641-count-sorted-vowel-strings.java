@@ -1,22 +1,10 @@
 class Solution {
-    int count = 0;
-    String[] str = new String[] {"a", "e", "i", "o", "u"};
     public int countVowelStrings(int n) {
-        String[] str = new String[] {"a", "e", "i", "o", "u"};
-        for (int i = 0; i < 5; i++) {
-            recurr(n, 1, str[i], i);
-        }
-        return count;
-    }
+        int[] dp = new int[] {0, 1, 1, 1, 1, 1};
+        for (int i = 1; i <= n; ++i)
+            for (int k = 1; k <= 5; ++k)
+                dp[k] += dp[k - 1];
+        return dp[5];
 
-    public void recurr(int n, int num, String s, int alphabet) {
-        if (num >= n) {
-            count++;
-            return;
-        }
-
-        for (int i = alphabet; i < 5; i++) {
-            recurr(n, num + 1, s + str[i], i);
-        }
     }
 }

@@ -1,6 +1,8 @@
-# Write your MySQL query statement below
-SELECT    a.machine_id, CAST(SUM(b.timestamp - a.timestamp) / COUNT(*) AS DECIMAL(10,3) ) as processing_time
-FROM      activity a
-LEFT JOIN activity b ON a.process_id = b.process_id AND a.machine_id = b.machine_id
-WHERE     a.activity_type = 'start' AND b.activity_type = 'end'
-GROUP BY  machine_id;
+select 
+a.machine_id,
+round(
+      (select avg(a1.timestamp) from Activity a1 where a1.activity_type = 'end' and a1.machine_id = a.machine_id) - 
+      (select avg(a1.timestamp) from Activity a1 where a1.activity_type = 'start' and a1.machine_id = a.machine_id)
+,3) as processing_time
+from Activity a
+group by a.machine_id

@@ -18,24 +18,23 @@ class Solution {
         if (root == null)
             return null;
         
-        final Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
 
-        while(!queue.isEmpty()) {
-            TreeNode node = queue.poll();
+        while(!q.isEmpty()) {
+            TreeNode node = q.poll();
             TreeNode left = node.left;
-
             node.left = node.right;
             node.right = left;
 
             if (node.left != null) {
-                queue.offer(node.left);
+                q.offer(node.left);
             }
+
             if (node.right != null) {
-                queue.offer(node.right);
+                q.offer(node.right);
             }
         }
-
         return root;
     }
 }

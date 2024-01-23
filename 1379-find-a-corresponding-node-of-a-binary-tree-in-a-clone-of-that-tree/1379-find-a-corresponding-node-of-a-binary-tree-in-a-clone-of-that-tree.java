@@ -9,12 +9,26 @@
  */
 
 class Solution {
-	public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
-		if (original == null || original == target)
-			return cloned;
-		TreeNode res = getTargetCopy(original.left, cloned.left, target);
-		if (res != null)
-			return res;
-		return getTargetCopy(original.right, cloned.right, target);
-	}
+    public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
+        if (cloned.val == target.val) return cloned;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(cloned);
+
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+
+            if (node.val == target.val)
+                return node;
+
+            if (node.left != null) {
+                q.offer(node.left);
+            }
+
+            if (node.right != null) {
+                q.offer(node.right);
+            }
+        }
+
+        return cloned;
+    }
 }

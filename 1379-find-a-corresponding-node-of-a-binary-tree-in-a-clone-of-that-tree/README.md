@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/">1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree</a></h2><h3>Easy</h3><hr><div><p>Given two binary trees <code>original</code> and <code>cloned</code> and given a reference to a node <code>target</code> in the original tree.</p>
+<h2><a href="https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree">1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree</a></h2><h3>Easy</h3><hr><p>Given two binary trees <code>original</code> and <code>cloned</code> and given a reference to a node <code>target</code> in the original tree.</p>
 
 <p>The <code>cloned</code> tree is a <strong>copy of</strong> the <code>original</code> tree.</p>
 
@@ -8,21 +8,24 @@
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
-<img alt="" src="https://assets.leetcode.com/uploads/2020/02/21/e1.png" style="width: 544px; height: 426px;">
-<pre><strong>Input:</strong> tree = [7,4,3,null,null,6,19], target = 3
+<img alt="" src="https://assets.leetcode.com/uploads/2020/02/21/e1.png" style="width: 544px; height: 426px;" />
+<pre>
+<strong>Input:</strong> tree = [7,4,3,null,null,6,19], target = 3
 <strong>Output:</strong> 3
 <strong>Explanation:</strong> In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.
 </pre>
 
 <p><strong class="example">Example 2:</strong></p>
-<img alt="" src="https://assets.leetcode.com/uploads/2020/02/21/e2.png" style="width: 221px; height: 159px;">
-<pre><strong>Input:</strong> tree = [7], target =  7
+<img alt="" src="https://assets.leetcode.com/uploads/2020/02/21/e2.png" style="width: 221px; height: 159px;" />
+<pre>
+<strong>Input:</strong> tree = [7], target =  7
 <strong>Output:</strong> 7
 </pre>
 
 <p><strong class="example">Example 3:</strong></p>
-<img alt="" src="https://assets.leetcode.com/uploads/2020/02/21/e3.png" style="width: 459px; height: 486px;">
-<pre><strong>Input:</strong> tree = [8,null,6,null,5,null,4,null,3,null,2,null,1], target = 4
+<img alt="" src="https://assets.leetcode.com/uploads/2020/02/21/e3.png" style="width: 459px; height: 486px;" />
+<pre>
+<strong>Input:</strong> tree = [8,null,6,null,5,null,4,null,3,null,2,null,1], target = 4
 <strong>Output:</strong> 4
 </pre>
 
@@ -37,4 +40,3 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Could you solve the problem if repeated values on the tree are allowed?</p>
-</div>

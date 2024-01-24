@@ -14,24 +14,18 @@
  * }
  */
 class Solution {
+    int res = 0;
     public int sumOfLeftLeaves(TreeNode root) {
-        int answer = 0;
-        Queue<TreeNode> q = new LinkedList<>();
-
-        q.offer(root);
-        while(!q.isEmpty()) {
-            TreeNode node = q.poll();
-            if (node.right != null) {
-                q.offer(node.right);
-            }
-            if (node.left != null) {
-                if (node.left.right == null && node.left.left == null)
-                    answer += node.left.val;
-                else
-                    q.offer(node.left);
-            }
+        // 왼쪽 서브트리에 있는 왼쪽 노드 모두 구하기
+        // 오른쪽 서브 트리에 있는 왼쪽 노드 모두 구하기
+        if (root.left != null) {
+            if (root.left.left == null && root.left.right == null)
+                res += root.left.val;
+            else
+                sumOfLeftLeaves(root.left);
         }
 
-        return answer;
+        if (root.right != null) sumOfLeftLeaves(root.right);
+        return res;
     }
 }

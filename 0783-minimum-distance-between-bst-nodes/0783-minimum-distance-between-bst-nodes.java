@@ -14,28 +14,13 @@
  * }
  */
 class Solution {
+    Integer res = Integer.MAX_VALUE, pre = null;
+
     public int minDiffInBST(TreeNode root) {
-        int answer = Integer.MAX_VALUE;
-        List<Integer> list = new ArrayList<>();
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-
-        while(!q.isEmpty()) {
-            TreeNode node = q.poll();
-
-            if (node.left != null)
-                q.offer(node.left);
-
-            if (node.right != null)
-                q.offer(node.right);
-            
-            for (int value : list) {
-                int diff = Math.abs(node.val - value);
-                answer = Math.min(answer, diff);
-            }
-            list.add(node.val);
-        }
-
-        return answer;
+        if (root.left != null) minDiffInBST(root.left);
+        if (pre != null) res = Math.min(res, root.val - pre);
+        pre = root.val;
+        if (root.right != null) minDiffInBST(root.right);
+        return res;
     }
-}
+} 

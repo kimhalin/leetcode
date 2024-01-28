@@ -14,20 +14,17 @@
  * }
  */
 class Solution {
-    int res = 0;
-    public int sumRootToLeaf(TreeNode root) {
-        sum(root, "");
-        return res;
-    }
-
-    public void sum(TreeNode root, String str) {
-        if (root.left == null && root.right == null) {
-            res += Integer.parseInt(str + root.val, 2);
+    int ans = 0;
+    void trav(TreeNode root,int val){
+        if(root == null)
             return;
-        }
-        if (root.left != null)
-            sum(root.left, str + root.val);
-        if (root.right != null)
-            sum(root.right, str + root.val);
+        if(root.left == null && root.right == null)
+            ans += val*2 + root.val;
+        trav(root.left,val*2+root.val);
+        trav(root.right,val*2+root.val);   
+    }
+    public int sumRootToLeaf(TreeNode root) {
+         trav(root,0);
+        return ans;
     }
 }

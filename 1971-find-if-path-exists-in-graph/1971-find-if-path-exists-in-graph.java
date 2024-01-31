@@ -1,43 +1,41 @@
-class DisjointSetUnion {
-    private int[] parent;
-    private int N;
-
-    public DisjointSetUnion(int n) {
+class UnionFind {
+    int N;
+    int[] nodes;
+    public UnionFind(int n) {
         this.N = n;
-        this.parent = new int[this.N];
-        for (int i = 0; i < this.N; i++) {
-            this.parent[i] = i;
-        }
+        nodes = new int[this.N];
+        for (int i = 0; i < n; i++)
+            nodes[i] = i;
     }
 
-    public boolean areConnected(int u, int v) {
+    public boolean isConnected(int u, int v) {
         return find(u) == find(v);
     }
 
     public void union(int u, int v) {
-        if (u != v) {
-            int a = find(u);
-            int b = find(v);
-            parent[a] = b;
-        }
+        int x = find(v);
+        int y = find(u);
+        nodes[x] = y;
     }
 
-    private int find(int u) {
+    public int find(int u) {
         int x = u;
-        while(x != this.parent[x])
-            x = this.parent[x];
-        
-        this.parent[u] = x;
+        while (nodes[x] != x) {
+            x = nodes[x];
+        }
+
         return x;
     }
+
 }
+
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        DisjointSetUnion set = new DisjointSetUnion(n);
+        UnionFind uf = new UnionFind(n);
         for (int[] edge : edges) {
-            set.union(edge[0], edge[1]);
+            uf.union(edge[0], edge[1]);
         }
 
-        return set.areConnected(source, destination);
+        return uf.isConnected(source, destination);
     }
 }

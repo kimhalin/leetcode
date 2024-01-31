@@ -14,26 +14,14 @@
  * }
  */
 class Solution {
+    Set<Integer> set = new HashSet<>();
+
     public boolean findTarget(TreeNode root, int k) {
-        Set<Integer> set = new HashSet<>();
-        Queue<TreeNode> q = new LinkedList<>();
-
-        q.offer(root);
-
-        while(!q.isEmpty()) {
-            TreeNode node = q.poll();
-
-
-            if (set.contains(k - node.val))
-                return true;
-
-           set.add(node.val);
-            if (node.right != null)
-                q.offer(node.right);
-            if (node.left != null)
-                q.offer(node.left);
-        }
-
-        return false;
+        if (root == null) return false;
+        if (set.contains(k - root.val))
+            return true;
+        
+        set.add(root.val);
+        return findTarget(root.left, k) || findTarget(root.right, k);
     }
 }

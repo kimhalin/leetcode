@@ -13,7 +13,7 @@
  *     }
  * }
  */
-class Solution {
+class Solution {   
     List<String> list = new ArrayList<>();
 
     public List<String> binaryTreePaths(TreeNode root) {
@@ -26,11 +26,9 @@ class Solution {
             list.add(str);
             return;
         }
-        if (root.left != null) {
+        if (root.left != null)
             dfs(root.left, str + "->" + root.left.val);
-        }
-        if (root.right != null) {
+        if (root.right != null)
             dfs(root.right, str + "->" + root.right.val);
-        }
     }
 }
